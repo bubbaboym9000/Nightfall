@@ -39,7 +39,7 @@ public class ClickGuiScreen extends Screen {
 
                 if (fullbrightEnabled) {
                     oldGamma = Minecraft.getInstance().options.gamma().get();
-                    Minecraft.getInstance().options.gamma().set(5.0);
+                    Minecraft.getInstance().options.gamma().set(1.0);
                 } else {
                     Minecraft.getInstance().options.gamma().set(oldGamma);
                 }
