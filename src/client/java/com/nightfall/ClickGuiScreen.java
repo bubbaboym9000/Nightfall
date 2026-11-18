@@ -10,7 +10,7 @@ public class ClickGuiScreen extends Screen {
 
     public static boolean sprintEnabled = false;
     private boolean fullbrightEnabled = false;
-    private boolean espEnabled = false;
+    public static boolean espEnabled = false;
     private double oldGamma = 0.5;
 
     public ClickGuiScreen() {
