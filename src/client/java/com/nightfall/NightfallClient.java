@@ -39,7 +39,9 @@ public class NightfallClient implements ClientModInitializer {
         );
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-
+if (client.player != null && ClickGuiScreen.sprintEnabled) {
+    client.player.setSprinting(true);
+}
             while (sprintKey.consumeClick()) {
                 if (client.player != null) {
                     client.player.setSprinting(
