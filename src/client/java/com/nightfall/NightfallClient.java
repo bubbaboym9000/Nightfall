@@ -38,7 +38,13 @@ public class NightfallClient implements ClientModInitializer {
             )
         );
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {if (client.level != null) {
+    for (Entity entity : client.level.entitiesForRendering()) {
+        if (entity != client.player) {
+            entity.setGlowingTag(ClickGuiScreen.espEnabled);
+        }
+    }
+}
 if (client.player != null && ClickGuiScreen.sprintEnabled) {
     client.player.setSprinting(true);
 }
