@@ -1,15 +1,14 @@
 
 package com.nightfall;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.gizmos.DrawableGizmoPrimitives;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.Shapes;
 
 public class EntityEspRenderer {
 
@@ -20,7 +19,6 @@ public class EntityEspRenderer {
     }
 
     private static void render(LevelRenderContext context) {
-
         if (!ClickGuiScreen.espEnabled) {
             return;
         }
@@ -31,39 +29,48 @@ public class EntityEspRenderer {
             return;
         }
 
-        Vec3 camera = context.levelState().cameraRenderState.pos;
-        PoseStack matrices = context.poseStack();
+        DrawableGizmoPrimitives gizmos =
+            new DrawableGizmoPrimitives();
 
         for (Entity entity : client.level.entitiesForRendering()) {
-
             if (!(entity instanceof Mob)) {
                 continue;
             }
 
-            var box = entity.getBoundingBox().move(
-                -entity.getX(),
-                -entity.getY(),
-                -entity.getZ()
-            );
+            AABB box = entity.getBoundingBox();
 
-            matrices.pushPose();
+            Vec3 a = new Vec3(box.minX, box.minY, box.minZ);
+            Vec3 b = new Vec3(box.maxX, box.minY, box.minZ);
+            Vec3 c = new Vec3(box.maxX, box.minY, box.maxZ);
+            Vec3 d = new Vec3(box.minX, box.minY, box.maxZ);
 
-            matrices.translate(
-                entity.getX() - camera.x,
-                entity.getY() - camera.y,
-                entity.getZ() - camera.z
-            );
+            Vec3 e = new Vec3(box.minX, box.maxY, box.minZ);
+            Vec3 f = new Vec3(box.maxX, box.maxY, box.minZ);
+            Vec3 g = new Vec3(box.maxX, box.maxY, box.maxZ);
+            Vec3 h = new Vec3(box.minX, box.maxY, box.maxZ);
 
-            context.submitNodeCollector().submitShapeOutline(
-                matrices,
-                Shapes.create(box),
-                RenderTypes.linesTranslucent(),
-                0xFF00FF00,
-                2.0F,
-                false
-            );
+            int green = 0xFF00FF00;
 
-            matrices.popPose();
+            gizmos.addLine(a, b, green, 2.0F);
+            gizmos.addLine(b, c, green, 2.0F);
+            gizmos.addLine(c, d, green, 2.0F);
+            gizmos.addLine(d, a, green, 2.0F);
+
+            gizmos.addLine(e, f, green, 2.0F);
+            gizmos.addLine(f, g, green, 2.0F);
+            gizmos.addLine(g, h, green, 2.0F);
+            gizmos.addLine(h, e, green, 2.0F);
+
+            gizmos.addLine(a, e, green, 2.0F);
+            gizmos.addLine(b, f, green, 2.0F);
+            gizmos.addLine(c, g, green, 2.0F);
+            gizmos.addLine(d, h, green, 2.0F);
         }
+
+        gizmos.submit(
+            context.submitNodeCollector(),
+            context.levelState().cameraRenderState,
+            true
+        );
     }
 }
