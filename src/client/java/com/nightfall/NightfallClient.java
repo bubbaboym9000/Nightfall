@@ -57,7 +57,6 @@ EntityEspRenderer.register();
                 client.player.setSprinting(true);
             }
 
-            updateEntityEsp(client);
 
             while (sprintKey.consumeClick()) {
                 if (client.player != null) {
