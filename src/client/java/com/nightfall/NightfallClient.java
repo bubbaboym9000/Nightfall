@@ -92,9 +92,9 @@ public class NightfallClient implements ClientModInitializer {
 
         for (Entity entity : client.level.entitiesForRendering()) {
 
-            if (!(entity instanceof Mob) || entity == client.player) {
-                continue;
-            }
+            if (entity == client.player) {
+    continue;
+}
 
             seen.add(entity);
 
