@@ -1,17 +1,15 @@
-# Nightfall GitHub Actions workflow
+
 name: Nightfall Build
 
-on:
-  push:
-    branches: [ main, master ]
-  workflow_dispatch:
+on: [push, workflow_dispatch]
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Confirm workflow is running
-        run: echo "Nightfall workflow detected!"
+      - name: Test workflow
+        run: echo "Nightfall workflow is working!"
+
