@@ -10,10 +10,10 @@
       "com.nightfall.NightfallClient"
     ]
   },
-  "depends": {
-    "fabricloader": ">=0.20.1",
-    "minecraft": "26.3",
-    "java": ">=25",
-    "fabric-api": "*"
-  }
+"depends": {
+  "fabricloader": ">=0.20.1",
+  "minecraft": "26.3",
+  "java": ">=25",
+  "fabric-api": "*"
+}
 }
