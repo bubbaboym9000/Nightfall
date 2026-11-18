@@ -57,7 +57,7 @@ public class EntityEspRenderer {
             context.submitNodeCollector().submitShapeOutline(
                 matrices,
                 Shapes.create(box),
-                RenderTypes.lines(),
+                RenderTypes.linesTranslucent(),
                 0xFF00FF00,
                 2.0F,
                 false
