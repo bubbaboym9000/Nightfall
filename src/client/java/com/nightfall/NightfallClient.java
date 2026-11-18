@@ -32,7 +32,7 @@ public class NightfallClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-
+EntityEspRenderer.register();
         sprintKey = KeyMappingHelper.registerKeyMapping(
             new KeyMapping(
                 "key.nightfall.sprint",
