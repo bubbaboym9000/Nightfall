@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "nightfall",
+  "version": "${version}",
+  "name": "Nightfall Client",
+  "description": "A client-side Minecraft utility mod with a simple toggle framework.",
+  "environment": "client",
+  "entrypoints": { "client": ["com.nightfall.NightfallClient"] },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
