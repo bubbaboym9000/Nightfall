@@ -51,7 +51,7 @@ public class ClickGuiScreen extends Screen {
         ).bounds(centerX - 100, startY + 25, 200, 20).build());
 
         addRenderableWidget(Button.builder(
-            Component.literal("ESP: OFF"),
+            Component.literal("ESP: " + (espEnabled ? "ON" : "OFF")),
             button -> {
                 espEnabled = !espEnabled;
                 button.setMessage(Component.literal(
