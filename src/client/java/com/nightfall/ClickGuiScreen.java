@@ -1,3 +1,4 @@
+
 package com.nightfall;
 
 import net.minecraft.client.Minecraft;
@@ -11,6 +12,7 @@ public class ClickGuiScreen extends Screen {
     public static boolean sprintEnabled = false;
     private boolean fullbrightEnabled = false;
     public static boolean espEnabled = false;
+    public static boolean xrayEnabled = false;
     private double oldGamma = 0.5;
 
     public ClickGuiScreen() {
@@ -20,7 +22,7 @@ public class ClickGuiScreen extends Screen {
     @Override
     protected void init() {
         int centerX = this.width / 2;
-        int startY = this.height / 2 - 40;
+        int startY = this.height / 2 - 50;
 
         addRenderableWidget(Button.builder(
             Component.literal("Sprint: " + (sprintEnabled ? "ON" : "OFF")),
@@ -33,7 +35,7 @@ public class ClickGuiScreen extends Screen {
         ).bounds(centerX - 100, startY, 200, 20).build());
 
         addRenderableWidget(Button.builder(
-            Component.literal("Fullbright: OFF"),
+            Component.literal("Fullbright: " + (fullbrightEnabled ? "ON" : "OFF")),
             button -> {
                 fullbrightEnabled = !fullbrightEnabled;
 
@@ -59,6 +61,16 @@ public class ClickGuiScreen extends Screen {
                 ));
             }
         ).bounds(centerX - 100, startY + 50, 200, 20).build());
+
+        addRenderableWidget(Button.builder(
+            Component.literal("X-Ray: " + (xrayEnabled ? "ON" : "OFF")),
+            button -> {
+                xrayEnabled = !xrayEnabled;
+                button.setMessage(Component.literal(
+                    "X-Ray: " + (xrayEnabled ? "ON" : "OFF")
+                ));
+            }
+        ).bounds(centerX - 100, startY + 75, 200, 20).build());
     }
 
     @Override
@@ -74,7 +86,7 @@ public class ClickGuiScreen extends Screen {
             this.font,
             "NIGHTFALL",
             this.width / 2 - 35,
-            this.height / 2 - 75,
+            this.height / 2 - 85,
             0xFFB56CFF,
             true
         );
