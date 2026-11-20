@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "nightfall",
+  "version": "${version}",
+  "name": "Nightfall",
+  "description": "Adds Nightfall, a netherite-tier sword that blinds whatever it strikes.",
+  "authors": [
+    "You"
+  ],
+  "license": "CC0-1.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.nightfall.NightfallMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
